@@ -1,0 +1,255 @@
+Below is a **single‑file HTML document** that you can save as `index.html`.  
+It contains:
+
+* **Inline CSS** (inside a `<style>` tag) for layout, colors and simple animations.  
+* **Vanilla JavaScript** (inside a `<script>` tag) that adds:
+  * Smooth scrolling for the navigation links.  
+  * A “typing” headline animation on the hero section.  
+  * A simple image carousel for the *Gallery* section.  
+  * Counter animation for the *Achievements* section.  
+
+Feel free to replace the placeholder text and images with the real content for **Sri Sairam Engineering College**.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sri Sairam Engineering College</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ---------- Inline CSS ---------- -->
+    <style>
+        /* ==== Reset ==== */
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#333;background:#f9f9f9;}
+        a{text-decoration:none;color:inherit;}
+
+        /* ==== Layout ==== */
+        header{background:#003366;color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:1000;}
+        nav ul{list-style:none;display:flex;gap:1.5rem;}
+        nav a{color:#fff;font-weight:bold;transition:color .3s;}
+        nav a:hover{color:#ffcc00;}
+
+        .hero{
+            background:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80')
+                      no-repeat center/cover;
+            height:70vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            color:#fff;
+            position:relative;
+        }
+        .hero::before{
+            content:"";
+            position:absolute; inset:0;
+            background:rgba(0,0,0,0.5);
+        }
+        .hero h1{font-size:3rem;z-index:1;margin-bottom:.5rem;}
+        .hero p{font-size:1.2rem;z-index:1;}
+
+        section{padding:4rem 2rem;max-width:1200px;margin:auto;}
+        .about, .courses, .gallery, .contact{background:#fff;margin-bottom:2rem;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+
+        h2{margin-bottom:1rem;color:#003366;}
+        .courses ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+        .courses li{background:#f0f8ff;padding:1rem;border-radius:6px;list-style:none;text-align:center;}
+
+        .gallery{position:relative;overflow:hidden;}
+        .gallery img{width:100%;display:none;}
+        .gallery img.active{display:block;animation:fadeIn .6s ease;}
+
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+        .counter{display:flex;justify-content:space-around;gap:1rem;}
+        .counter div{text-align:center;}
+        .counter span{font-size:2.5rem;color:#003366;font-weight:bold;}
+
+        footer{background:#003366;color:#fff;text-align:center;padding:1rem;}
+        footer a{color:#ffcc00;}
+
+        /* ==== Simple Responsive ==== */
+        @media (max-width:768px){
+            .hero h1{font-size:2.2rem;}
+            nav ul{flex-direction:column;gap:.5rem;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- ---------- Header & Navigation ---------- -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ---------- Hero Section ---------- -->
+<section class="hero" id="hero">
+    <div>
+        <h1 id="typed"></h1>
+        <p>Excellence in Engineering Education Since 1995</p>
+    </div>
+</section>
+
+<!-- ---------- About Section ---------- -->
+<section class="about" id="about">
+    <h2>About Sri Sairam Engineering College</h2>
+    <p>
+        Sri Sairam Engineering College (SSEC) is a premier institution dedicated to fostering
+        innovation, research, and professional excellence. Located in a lush, green campus,
+        SSEC offers top‑class infrastructure, industry‑linked curricula and a vibrant student
+        community.
+    </p>
+
+    <div class="counter">
+        <div>
+            <span id="students">0</span><br>Students
+        </div>
+        <div>
+            <span id="faculty">0</span><br>Faculty
+        </div>
+        <div>
+            <span id="placements">0</span><br>Placements
+        </div>
+    </div>
+</section>
+
+<!-- ---------- Courses Section ---------- -->
+<section class="courses" id="courses">
+    <h2>Our Courses</h2>
+    <ul>
+        <li>B.Tech – Computer Science</li>
+        <li>B.Tech – Mechanical Engineering</li>
+        <li>B.Tech – Electrical & Electronics</li>
+        <li>B.Tech – Civil Engineering</li>
+        <li>M.Tech – VLSI Design</li>
+        <li>M.Tech – Power Systems</li>
+        <li>Ph.D – Engineering & Technology</li>
+    </ul>
+</section>
+
+<!-- ---------- Gallery (Simple Carousel) ---------- -->
+<section class="gallery" id="gallery">
+    <h2 style="padding:1rem 2rem;">Campus Gallery</h2>
+    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1200&q=80" class="active" alt="Campus 1">
+    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80" alt="Campus 2">
+    <img src="https://images.unsplash.com/photo-1526406915895-ff5f2b0ab0c2?auto=format&fit=crop&w=1200&q=80" alt="Campus 3">
+</section>
+
+<!-- ---------- Contact Section ---------- -->
+<section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>
+        <strong>Address:</strong> 123, Engineering Road, Chennai – 600040, Tamil Nadu, India<br>
+        <strong>Phone:</strong> +91 44 1234 5678<br>
+        <strong>Email:</strong> <a href="mailto:info@sairamcollege.edu">info@sairamcollege.edu</a>
+    </p>
+    <form id="contactForm" style="max-width:600px;margin-top:1rem;">
+        <input type="text" placeholder="Your Name" required style="width:100%;padding:.5rem;margin:.3rem 0;">
+        <input type="email" placeholder="Your Email" required style="width:100%;padding:.5rem;margin:.3rem 0;">
+        <textarea placeholder="Message" required style="width:100%;padding:.5rem;margin:.3rem 0;height:120px;"></textarea>
+        <button type="submit" style="background:#003366;color:#fff;padding:.7rem 1.5rem;border:none;cursor:pointer;">
+            Send Message
+        </button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Sri Sairam Engineering College | <a href="#hero">Back to top</a>
+</footer>
+
+<!-- ---------- Inline JavaScript ---------- -->
+<script>
+/* --------- Smooth Scroll for Nav Links --------- */
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({behavior: 'smooth'});
+    });
+});
+
+/* --------- Typing Effect on Hero --------- */
+const typedEl = document.getElementById('typed');
+const phrases = ["Welcome to Sri Sairam Engineering College", "Shape Your Future With Us", "Innovate • Inspire • Impact"];
+let pIndex = 0, charIndex = 0, isDeleting = false;
+
+function type() {
+    const current = phrases[pIndex];
+    if (isDeleting) {
+        typedEl.textContent = current.slice(0, --charIndex);
+        if (charIndex === 0) {
+            isDeleting = false;
+            pIndex = (pIndex + 1) % phrases.length;
+        }
+    } else {
+        typedEl.textContent = current.slice(0, ++charIndex);
+        if (charIndex === current.length) {
+            isDeleting = true;
+            setTimeout(type, 2000); // pause before delete
+            return;
+        }
+    }
+    setTimeout(type, isDeleting ? 50 : 120);
+}
+type();
+
+/* --------- Counter Animation --------- */
+const counterData = {students: 4500, faculty: 250, placements: 95};
+function animateCounter(id, end) {
+    const el = document.getElementById(id);
+    let start = 0;
+    const duration = 2000;
+    const stepTime = Math.abs(Math.floor(duration / end));
+    const timer = setInterval(() => {
+        start += 1;
+        el.textContent = start;
+        if (start >= end) clearInterval(timer);
+    }, stepTime);
+}
+window.addEventListener('load', () => {
+    animateCounter('students', counterData.students);
+    animateCounter('faculty', counterData.faculty);
+    animateCounter('placements', counterData.placements);
+});
+
+/* --------- Simple Image Carousel --------- */
+const imgs = document.querySelectorAll('.gallery img');
+let cur = 0;
+function showNext() {
+    imgs[cur].classList.remove('active');
+    cur = (cur + 1) % imgs.length;
+    imgs[cur].classList.add('active');
+}
+setInterval(showNext, 4000);
+
+/* --------- Contact Form (demo only) --------- */
+document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you! Your message has been sent.');
+    e.target.reset();
+});
+</script>
+</body>
+</html>
+```
+
+### How to use
+
+1. **Copy** the entire snippet into a file named `index.html`.  
+2. **Open** the file in any modern browser – you’ll see the college landing page with:
+   * Smooth navigation scrolling.  
+   * A typing headline in the hero banner.  
+   * Animated counters in the About section.  
+   * A rotating gallery of campus images.  
+   * A simple functional contact form (demo‑alert).  
+
+Feel free to swap images, update the text, or extend the JavaScript with more sophisticated features (e.g., fetch real stats from an API, integrate a modal login, etc.). Enjoy building the website for Sri Sairam Engineering College!
